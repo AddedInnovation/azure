@@ -14,4 +14,6 @@ function InstallAppInsights([String]$InstrumentationKey)
     Enable-ApplicationInsightsMonitoring -InstrumentationKey $InstrumentationKey -AcceptLicense -EnableInstrumentationEngine
 }
 
-InstallAppInsights -InstrumentationKey $InstrumentationKey
+Write-Output "Going to install application insights"
+#InstallAppInsights -InstrumentationKey $InstrumentationKey
+
