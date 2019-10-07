@@ -5,9 +5,14 @@ param(
 
 function InstallAppInsights([String]$InstrumentationKey)
 {
-	Write-Information "Going to install application insights"
-	Write-Information $key
-	Mkdir C:\AppX$key   
+    Install-PackageProvider Nuget –Force
+    Install-Module –Name PowerShellGet –Force -AllowClobber
+	Update-Module -Name PowerShellGet
+
+    Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+    Install-Module -Name Az.ApplicationMonitor -AllowPrerelease -AcceptLicense
+
+    Enable-ApplicationInsightsMonitoring -InstrumentationKey $InstrumentationKey -AcceptLicense -EnableInstrumentationEngine
 }
 
 InstallAppInsights $key
